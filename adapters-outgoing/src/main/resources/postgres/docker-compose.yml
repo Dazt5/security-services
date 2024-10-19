@@ -1,0 +1,36 @@
+# Docker script to deploy and configure a postgres db meanwhile I figure out how to use liquibase.
+version: '3.8'
+
+services:
+  db:
+    container_name: pg_container_security_services
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_DEFAULT_USER_NAME}
+      POSTGRES_PASSWORD: ${POSTGRES_DEFAULT_USER_PASSWORD}
+      DEFAULT_DB: ${SECURITY_SERVICES_DB_NAME}
+      DEFAULT_USER: ${SECURITY_SERVICES_DB_USER}
+      DEFAULT_USER_PASSWORD: ${SECURITY_SERVICES_DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/database-setup.sh:/docker-entrypoint-initdb.d/database-setup.sh
+    command: [ "postgres" ]
+    networks:
+      - pg_security_services_network
+  pgadmin:
+    container_name: pgadmin4_container_security_services
+    image: dpage/pgadmin4:8.12.0
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      - pg_security_services_network
+
+networks:
+  pg_security_services_network:
