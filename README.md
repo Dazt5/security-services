@@ -3,13 +3,15 @@
 Project is organized using modules and following **Hexagonal Architecture**:
 
 ## Modules:
-- <b>code-domain</b>: inside this module are the domain entities, use cases and ports that will interact with the infrastructure.
-- <o>adapters-incoming</o>: inside this module we will found the classes that will interact with third-party APIs or 
-- <g>adapters-outgoing</g>: there are the data persistence classes and integration with third-party systems.
-- <r>app</r>: general project configuration and aspects related to the app infrastructure. 
-
+- code-domain: inside this module are the domain entities, use cases and ports that will interact with the infrastructure.
+- adapters-incoming: inside this module we will found the classes that will interact with third-party APIs or 
+- adapters-outgoing: there are the data persistence classes and integration with third-party systems.
+- app: general project configuration and aspects related to the app infrastructure. 
 
 ## Database configuration 
+> [!IMPORTANT]
+> In order to be able to run the project, we've created some scripts that will help you to create a postgres database, 
+> only software needed is docker, this is completely optional.
 
 Inside module `adapters-outgoing/src/main/resource`, there is a docker-compose script with an autoconfigured postgres database.
 
@@ -27,11 +29,3 @@ create a database for the project.
 
 After configure these env variables, you should be able to run typing `docker-compose up`, make sure ports set in docker-compose
 are available.
-
-<style>
-b { color: #6c7af9 }
-o { color: #e2871c }
-g { color: #1bbb2d }
-r { color: #c93223 }
-
-</style>
