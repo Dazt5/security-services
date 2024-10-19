@@ -4,7 +4,7 @@ Project is organized using modules and following **Hexagonal Architecture**:
 
 ## Modules:
 - <b>code-domain</b>: inside this module are the domain entities, use cases and ports that will interact with the infrastructure.
-- <o>adapters-incoming</o>: inside this module we will found the classes that will interact with third-party APIs or 
+- <o>adapters-incoming</o>: inside this module we will found the classes that will interact with third-party APIs or handle outside calls.
 - <g>adapters-outgoing</g>: there are the data persistence classes and integration with third-party systems.
 - <r>app</r>: general project configuration and aspects related to the app infrastructure. 
 
