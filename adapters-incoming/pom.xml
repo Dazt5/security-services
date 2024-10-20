@@ -19,7 +19,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+        <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
     </properties>
 
     <repositories>
@@ -30,6 +30,12 @@
     </repositories>
 
     <dependencies>
+        <!-- Modules -->
+        <dependency>
+            <groupId>com.alejandra</groupId>
+            <artifactId>core-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

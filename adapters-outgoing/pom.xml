@@ -10,11 +10,17 @@
     </parent>
 
     <artifactId>adapters-outgoing</artifactId>
+    <packaging>jar</packaging>
+    <name>security-services-adapters-outgoing</name>
+    <description>persistence module</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+        <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
+        <liquibase.core.version>4.29.1</liquibase.core.version>
+        <postgres.driver.version>42.7.3</postgres.driver.version>
+        <h2.version>2.2.224</h2.version>
     </properties>
 
     <repositories>
@@ -25,11 +31,41 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.driver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.core.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>/postgres/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -67,7 +103,36 @@
                     <mainClass>MainKt</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.29.0</version>
+                <configuration>
+                    <changeLogFile>src/main/resources/db.changelog-master.yaml</changeLogFile>
+                    <url>jdbc:${env.SECURITY_SERVICES_DBMS}://${env.SECURITY_SERVICES_DB_HOST}:${env.SECURITY_SERVICES_DB_PORT}/${env.SECURITY_SERVICES_DB_NAME}</url>
+                    <username>${env.SECURITY_SERVICES_DB_USER}</username>
+                    <password>${env.SECURITY_SERVICES_DB_PASSWORD}</password>
+                    <driver>org.postgresql.Driver</driver>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- Perfil para ejecutar rollback -->
+        <profile>
+            <id>rollback</id>
+            <properties>
+                <liquibase.command>rollback</liquibase.command>
+                <liquibase.rollbackTag>v1.0</liquibase.rollbackTag>
+            </properties>
+        </profile>
+        <profile>
+            <id>update</id>
+            <properties>
+                <liquibase.command>update</liquibase.command>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

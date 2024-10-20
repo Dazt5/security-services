@@ -20,14 +20,13 @@
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>mavenCentral</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
+        <!-- Modules -->
+        <dependency>
+            <groupId>com.alejandra</groupId>
+            <artifactId>adapters-outgoing</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
