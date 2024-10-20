@@ -112,7 +112,7 @@
                     <url>jdbc:${env.SECURITY_SERVICES_DBMS}://${env.SECURITY_SERVICES_DB_HOST}:${env.SECURITY_SERVICES_DB_PORT}/${env.SECURITY_SERVICES_DB_NAME}</url>
                     <username>${env.SECURITY_SERVICES_DB_USER}</username>
                     <password>${env.SECURITY_SERVICES_DB_PASSWORD}</password>
-                    <driver>org.postgresql.Driver</driver>
+                    <driver>${env.SECURITY_SERVICES_DB_DRIVER}</driver>
                 </configuration>
             </plugin>
         </plugins>
