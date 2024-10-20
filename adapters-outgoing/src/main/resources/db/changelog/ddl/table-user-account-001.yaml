@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-user-account-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: user_account
+            columns:
+              - column:
+                  name: user_account_id
+                  type: varchar(36)
+                  remarks: unique identifier for a user
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: company_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_company
+                    references: company(company_id)
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mfa_enabled
+                  type: tinyint(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_login
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: bigint
+              - column:
+                  name: updated_by
+                  type: varchar(36)
+              - column:
+                  name: created_on
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(36)

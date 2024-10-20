@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: tag-version-1.0.0
+      author: david.alvarez@admin.com
+      changes:
+        - tagDatabase:
+            tag: v1.0.0

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+     file: db/changelog/ddl/table-company-001.yaml
+  - include:
+     file: db/changelog/ddl/table-user-account-001.yaml
+  - include:
+     file: db/changelog/ddl/table-role-001.yaml
+  - include:
+     file: db/changelog/ddl/table-user-account-role-001.yaml
+  - include:
+     file: db/changelog/tag-version-1.0.0.yaml

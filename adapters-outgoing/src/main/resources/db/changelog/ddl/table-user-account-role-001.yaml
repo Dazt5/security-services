@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-user-account-role-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: user_account_role
+            columns:
+              - column:
+                  name: user_account_id
+                  type: varchar(36)
+                  remarks: unique identifier for a user
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_account_role
+                    references: user_account(user_account_id)
+              - column:
+                  name: role_id
+                  type: varchar(36)
+                  remarks: unique identifier for a role
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_user_account
+                    references: role(role_id)
+        - addPrimaryKey:
+            columnNames: user_account_id, role_id
+            constraintName: pk_user_account_role
+            tableName: user_account_role

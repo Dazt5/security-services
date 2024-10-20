@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-role-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: role_id
+                  type: varchar(36)
+                  remarks: unique identifier for a role
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: role_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_description
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: bigint
+              - column:
+                  name: updated_by
+                  type: varchar(36)
+              - column:
+                  name: created_on
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(36)
