@@ -1,6 +1,4 @@
 # Docker script to deploy and configure a postgres db meanwhile I figure out how to use liquibase.
-version: '3.8'
-
 services:
   db:
     container_name: pg_container_security_services
@@ -22,7 +20,7 @@ services:
       - pg_security_services_network
   pgadmin:
     container_name: pgadmin4_container_security_services
-    image: dpage/pgadmin4:8.12.0
+    image: dpage/pgadmin4:latest
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
