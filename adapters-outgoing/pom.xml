@@ -121,10 +121,10 @@
     <profiles>
         <!-- Perfil para ejecutar rollback -->
         <profile>
-            <id>rollback</id>
+            <id>restart-database</id>
             <properties>
                 <liquibase.command>rollback</liquibase.command>
-                <liquibase.rollbackTag>v1.0</liquibase.rollbackTag>
+                <liquibase.rollbackTag>v0.0.0</liquibase.rollbackTag>
             </properties>
         </profile>
         <profile>

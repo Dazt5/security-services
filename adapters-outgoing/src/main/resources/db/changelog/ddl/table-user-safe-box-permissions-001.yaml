@@ -1,31 +1,35 @@
 databaseChangeLog:
   - changeSet:
-      id: table-company-001
+      id: table-user-safe-box-permissions-001
       author: david.alvarez@admin.com
       changes:
         - createTable:
-            tableName: company
+            tableName: user_safe_box_permissions
             columns:
               - column:
-                  name: company_id
+                  name: user_safe_box_permissions_id
                   type: varchar(36)
-                  remarks: unique identifier for a company
+                  remarks: unique identifier for an user permissions policy
                   constraints:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: company_name
-                  type: varchar(50)
+                  name: safe_box_id
+                  type: varchar(36)
                   constraints:
                     nullable: false
+                    foreignKeyName: fk_safe_box_permissions_safe_box
+                    references: safe_box(safe_box_id)
               - column:
-                  name: address
-                  type: varchar(255)
+                  name: user_account_id
+                  type: varchar(36)
                   constraints:
                     nullable: false
+                    foreignKeyName: fk_safe_box_permissions_user_account
+                    references: user_account(user_account_id)
               - column:
-                  name: contact_email
-                  type: varchar(50)
+                  name: has_access
+                  type: tinyint(1)
                   constraints:
                     nullable: false
               - column:
@@ -46,8 +50,5 @@ databaseChangeLog:
               - column:
                   name: created_by
                   type: varchar(36)
-              - column:
-                  name: status
-                  type: tinyint(1)
                   constraints:
                     nullable: false

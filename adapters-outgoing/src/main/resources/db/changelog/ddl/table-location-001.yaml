@@ -1,36 +1,38 @@
 databaseChangeLog:
   - changeSet:
-      id: table-company-001
+      id: table-location-001
       author: david.alvarez@admin.com
       changes:
         - createTable:
-            tableName: company
+            tableName: location
             columns:
               - column:
-                  name: company_id
+                  name: location_id
                   type: varchar(36)
-                  remarks: unique identifier for a company
+                  remarks: unique identifier for a location
                   constraints:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: company_name
-                  type: varchar(50)
+                  name: company_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_location_company
+                    references: company(company_id)
+              - column:
+                  name: location_name
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: address
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: contact_email
-                  type: varchar(50)
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: updated_on
-                  type: bigint
+                  type: BIGINT
                   constraints:
                     nullable: true
               - column:
@@ -40,14 +42,11 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: created_on
-                  type: bigint
+                  type: BIGINT
                   constraints:
                     nullable: false
               - column:
                   name: created_by
                   type: varchar(36)
-              - column:
-                  name: status
-                  type: tinyint(1)
                   constraints:
                     nullable: false

@@ -1,46 +1,44 @@
 databaseChangeLog:
   - changeSet:
-      id: table-role-001
+      id: table-access-log-001
       author: david.alvarez@admin.com
       changes:
         - createTable:
-            tableName: role
+            tableName: access_log
             columns:
               - column:
-                  name: role_id
+                  name: access_log_id
                   type: varchar(36)
-                  remarks: unique identifier for a role
+                  remarks: unique identifier for an access log
                   constraints:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: role_code
+                  name: safe_box_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_access_log_safe_box
+                    references: safe_box(safe_box_id)
+              - column:
+                  name: user_account_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_access_log_user_account_id
+                    references: user_account(user_account_id)
+              - column:
+                  name: accessed_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: accessed_by
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: method_used
                   type: varchar(20)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: role_name
-                  type: varchar(35)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: role_description
-                  type: varchar(200)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: updated_on
-                  type: bigint
-              - column:
-                  name: updated_by
-                  type: varchar(36)
-              - column:
-                  name: created_on
-                  type: bigint
-                  constraints:
-                    nullable: false
-              - column:
-                  name: created_by
-                  type: varchar(36)
                   constraints:
                     nullable: false

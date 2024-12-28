@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-safe-box-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: safe_box
+            columns:
+              - column:
+                  name: safe_box_id
+                  type: varchar(36)
+                  remarks: unique identifier for a safe box
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: location_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_safe_box_location
+                    references: location(location_id)
+              - column:
+                  name: encryption_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_safe_box_encryption_key
+                    references: encryption_key(encryption_key_id)
+              - column:
+                  name: status
+                  type: varchar(10)
+                  remarks: (locked, unlocked, maintenance).
+                  constraints:
+                    nullable: false

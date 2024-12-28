@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-encryption-key-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: encryption_key
+            columns:
+              - column:
+                  name: encryption_key_id
+                  type: VARCHAR(36)
+                  remarks: unique identifier for a encryption key
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: key_value
+                  type: TEXT
+                  remarks: encrypted key to unlock a safe box
+                  constraints:
+                    nullable: false
+              - column:
+                  name: create_at
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expires_at
+                  type: BIGINT
+                  constraints:
+                    nullable: false

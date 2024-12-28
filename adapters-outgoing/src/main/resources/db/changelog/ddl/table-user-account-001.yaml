@@ -53,9 +53,13 @@ databaseChangeLog:
               - column:
                   name: updated_on
                   type: bigint
+                  constraints:
+                    nullable: true
               - column:
                   name: updated_by
                   type: varchar(36)
+                  constraints:
+                    nullable: true
               - column:
                   name: created_on
                   type: bigint
@@ -64,3 +68,15 @@ databaseChangeLog:
               - column:
                   name: created_by
                   type: varchar(36)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: tinyint(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email_verified
+                  type: tinyint(1)
+                  constraints:
+                    nullable: false
