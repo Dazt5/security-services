@@ -27,6 +27,11 @@
             <artifactId>adapters-incoming</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.alejandra</groupId>
+            <artifactId>adapters-outgoing</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

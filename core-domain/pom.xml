@@ -21,12 +21,6 @@
     </properties>
 
     <dependencies>
-        <!-- Modules -->
-        <dependency>
-            <groupId>com.alejandra</groupId>
-            <artifactId>adapters-outgoing</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
 </project>

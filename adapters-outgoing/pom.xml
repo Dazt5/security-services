@@ -31,6 +31,12 @@
     </repositories>
 
     <dependencies>
+        <!-- Modules -->
+        <dependency>
+            <groupId>com.alejandra</groupId>
+            <artifactId>core-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>

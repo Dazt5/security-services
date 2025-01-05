@@ -19,7 +19,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<kotlin.version>1.9.25</kotlin.version>
-		<spring.version>3.3.4</spring.version>
+		<spring.version>3.4.1</spring.version>
 		<org.springdoc.openapi.starter.webmvc.ui.version>2.5.0</org.springdoc.openapi.starter.webmvc.ui.version>
 	</properties>
 	<modules>
@@ -32,6 +32,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -54,6 +55,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
