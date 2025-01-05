@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-company-user-account-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: company_user_account
+            columns:
+              - column:
+                  name: company_user_account_id
+                  type: varchar(36)
+                  remarks: unique identifier for a company user account
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: user_account_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: company_user_account_user_account
+                    references: user_account(user_account_id)
+              - column:
+                  name: company_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: company_user_account_company
+                    references: company(company_id)
+        - addUniqueConstraint:
+            tableName: company_user_account
+            columnNames: user_account_id, company_id
+            constraintName: unique_user_account_id_company_id

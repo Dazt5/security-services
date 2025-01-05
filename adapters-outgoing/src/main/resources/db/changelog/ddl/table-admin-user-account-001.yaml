@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-admin-user-account-001
+      author: david.alvarez@admin.com
+      changes:
+        - createTable:
+            tableName: admin_user_account
+            columns:
+              - column:
+                  name: admin_user_account_id
+                  type: varchar(36)
+                  remarks: unique identifier for a admin user account
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: user_account_id
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: company_user_account_user_account
+                    references: user_account(user_account_id)
+                    unique: true

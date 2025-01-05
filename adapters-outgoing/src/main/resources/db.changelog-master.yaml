@@ -8,6 +8,10 @@ databaseChangeLog:
   - include:
      file: db/changelog/ddl/table-user-account-001.yaml
   - include:
+     file: db/changelog/ddl/table-admin-user-account-001.yaml
+  - include:
+     file: db/changelog/ddl/table-company-user-account-001.yaml
+  - include:
      file: db/changelog/ddl/table-location-001.yaml
   - include:
      file: db/changelog/ddl/table-password-recovery-001.yaml
@@ -21,3 +25,5 @@ databaseChangeLog:
      file: db/changelog/ddl/table-user-safe-box-permissions-001.yaml
   - include:
      file: db/changelog/tag-version-1.0.0.yaml
+  - include:
+     file: db/changelog/dml/insert-company-001.yaml
