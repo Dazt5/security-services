@@ -21,3 +21,13 @@ databaseChangeLog:
                     foreignKeyName: company_user_account_user_account
                     references: user_account(user_account_id)
                     unique: true
+              - column:
+                  name: created_on
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(36)
+                  constraints:
+                    nullable: false

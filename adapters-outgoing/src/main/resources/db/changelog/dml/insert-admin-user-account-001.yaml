@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: insert-admin-user-account-001
       author: david.alvarez@admin.com
       context: local-dev
       preConditions:
@@ -8,27 +8,18 @@ databaseChangeLog:
             type: postgresql
       changes:
         - insert:
-            tableName: company
+            tableName: admin_user_account
             columns:
               - column:
-                  name: company_id
+                  name: admin_user_account_id
                   value: '695ebce8-621f-4e1f-b775-57aabf3123d5'
               - column:
-                  name: company_name
-                  value: 'company 1'
-              - column:
-                  name: address
-                  value: 'Cra. 8a entre calles 12 y 13 - BOGOTA D.C'
-              - column:
-                  name: contact_email
-                  value: 'fake1@companyfake1.com'
-              - column:
-                  name: status
-                  value: 1
+                  name: user_account_id
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
               - column:
                   name: created_on
                   valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'
               - column:
                   name: created_by
-                  value: 'userUUID'
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
       rollback: empty

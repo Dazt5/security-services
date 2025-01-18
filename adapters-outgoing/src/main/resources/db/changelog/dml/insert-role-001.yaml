@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: insert-company-001
+      id: insert-role-001
       author: david.alvarez@admin.com
       context: local-dev
       preConditions:
@@ -8,23 +8,22 @@ databaseChangeLog:
             type: postgresql
       changes:
         - insert:
-            tableName: company
+            tableName: role
             columns:
               - column:
-                  name: company_id
-                  value: '695ebce8-621f-4e1f-b775-57aabf3123d5'
+                  name: role_id
+                  value: 'bf81658d-85cb-4dd7-b9d1-0674d56198f4'
               - column:
-                  name: company_name
-                  value: 'company 1'
+                  name: role_code
+                  value: 'SYSTEM'
+                  constraints:
+                    unique: true
               - column:
-                  name: address
-                  value: 'Cra. 8a entre calles 12 y 13 - BOGOTA D.C'
+                  name: role_name
+                  value: 'SYSTEM'
               - column:
-                  name: contact_email
-                  value: 'fake1@companyfake1.com'
-              - column:
-                  name: status
-                  value: '1'
+                  name: role_description
+                  value: 'User responsible to perform automated tasks'
               - column:
                   name: created_on
                   valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'

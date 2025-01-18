@@ -25,5 +25,14 @@ databaseChangeLog:
      file: db/changelog/ddl/table-user-safe-box-permissions-001.yaml
   - include:
      file: db/changelog/tag-version-1.0.0.yaml
+  ### DML 1.0.0
   - include:
      file: db/changelog/dml/insert-company-001.yaml
+  - include:
+     file: db/changelog/dml/insert-system-user-account-001.yaml
+  - include:
+     file: db/changelog/dml/insert-admin-user-account-001.yaml
+  - include:
+     file: db/changelog/dml/insert-role-001.yaml
+  - include:
+     file: db/changelog/dml/update-role-system-user-001.yaml

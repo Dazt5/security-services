@@ -27,6 +27,16 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: company_user_account_company
                     references: company(company_id)
+              - column:
+                  name: created_on
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(36)
+                  constraints:
+                    nullable: false
         - addUniqueConstraint:
             tableName: company_user_account
             columnNames: user_account_id, company_id

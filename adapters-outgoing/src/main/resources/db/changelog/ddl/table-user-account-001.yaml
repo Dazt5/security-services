@@ -14,12 +14,12 @@ databaseChangeLog:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: company_id
+                  name: role_id
                   type: varchar(36)
                   constraints:
-                    nullable: false
+                    nullable: true
                     foreignKeyName: fk_user_company
-                    references: company(company_id)
+                    references: role(role_id)
               - column:
                   name: name
                   type: varchar(50)
@@ -39,7 +39,7 @@ databaseChangeLog:
                   name: password
                   type: varchar(50)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: mfa_enabled
                   type: tinyint(1)
@@ -49,7 +49,7 @@ databaseChangeLog:
                   name: last_login
                   type: bigint
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
                   name: updated_on
                   type: bigint

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-role-system-user-001
+      author: david.alvarez@admin.com
+      changes:
+        - update:
+            tableName: user_account
+            columns:
+              - column:
+                  name: role_id
+                  value: bf81658d-85cb-4dd7-b9d1-0674d56198f4
+            where: "user_account_id = '9a99241b-8700-44d0-a5fb-8e6d05759775'"
