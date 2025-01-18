@@ -51,3 +51,5 @@ replay_pid*
 
 ## Docker env files
 **/.env
+## Package with experimental features
+**/experimental/**.*
