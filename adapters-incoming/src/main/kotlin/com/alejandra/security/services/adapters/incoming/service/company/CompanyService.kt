@@ -1,4 +1,4 @@
-package com.alejandra.security.services.adapters.incoming.company.service.company
+package com.alejandra.security.services.adapters.incoming.service.company
 
 import com.alejandra.security.services.core.domain.company.model.Company
 

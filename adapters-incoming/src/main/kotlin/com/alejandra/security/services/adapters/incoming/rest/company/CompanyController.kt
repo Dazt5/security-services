@@ -1,6 +1,6 @@
-package com.alejandra.security.services.adapters.incoming.company.rest.company
+package com.alejandra.security.services.adapters.incoming.rest.company
 
-import com.alejandra.security.services.adapters.incoming.company.service.company.CompanyService
+import com.alejandra.security.services.adapters.incoming.service.company.CompanyService
 import com.alejandra.security.services.core.domain.company.model.Company
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
