@@ -8,9 +8,9 @@ Project is organized using modules and following **Hexagonal Architecture**:
 - adapters-outgoing: there are the data persistence classes and integration with third-party systems.
 - app: general project configuration and aspects related to the app infrastructure.
 
-## Database configuration
+## Database configuration(required)
 
-### Required environment variables:
+### Database required env variables:
 
 > [!IMPORTANT]
 > To run the app, you need to set the following env variables related to database configuration:
@@ -25,7 +25,7 @@ Project is organized using modules and following **Hexagonal Architecture**:
 - `SECURITY_SERVICES_DB_DRIVER`: driver that JPA will use to connect to the database e.g `org.postgresql.Driver` / `com.mysql.cj.jdbc.Driver`
 - `SECURITY_SERVICES_HIBERNATE_DIALECT`: dialect used for hibernate to connect to the database e.g `org.hibernate.dialect.PostgreSQLDialect` / `org.hibernate.dialect.MySQL8Dialect`
 
-### Optional environment variables:
+### Setup postgres database thru .ssh scripts(Optional):
 
 > [!TIP]
 > In order to be able to run the project, we've created some scripts that will help you to create a postgres database,
@@ -43,3 +43,15 @@ create a database for the project.
 
 After configure these env variables, you should be able to run typing `docker-compose up`, make sure ports set in docker-compose
 are available.
+
+## Setup Authentication(required)
+
+To sign and validate Jwt tokens you need to create an encoded-base64 secret and set it up in an env variable called ``JWT_SECRET``
+
+This secret will be used to sign and check Jwt tokens.
+
+> [!TIP]
+> You can create this secret using test method `testGenerateSecret` in class `JwtServicesTest` localed in `common` module.
+> full path: ```/security-services/common/src/test/kotlin/com/alejandra/security/jwt/JwtServicesTest.kt```
+
+- TODO: It will be leverage, the idea is to encrypt the secret and decrypt it each time we need to verify a token.

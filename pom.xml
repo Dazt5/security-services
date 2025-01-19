@@ -27,7 +27,8 @@
 		<module>core-domain</module>
 		<module>adapters-incoming</module>
 		<module>adapters-outgoing</module>
-	</modules>
+        <module>common</module>
+    </modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
