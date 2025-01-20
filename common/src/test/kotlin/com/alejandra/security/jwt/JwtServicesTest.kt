@@ -28,7 +28,36 @@ class JwtServicesTest {
     }
 
     @Test
-    fun givenATamperedToken_whenValidatingJwt_ThenValidation() {
+    fun givenACorrectTokenButNotUsernamePresent_whenValidatingJwt_ThenRaiseAnError() {
+        //arrange
+        val secret = "IDs6OL0iHmY8eyUTtFjk2frVX0R3KwJZ0hIJGhYoam0="
+        //act
+        val jwtValidatorService = JwtValidatorService(secret)
+        val jwtToken =
+            "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MzczMzY1MDAsImV4cCI6ODY0MDE3MzcyNTAxMDB9.xWGF9VqkptlyWdM_yHghAtM4a_deZz8eOgBZznFTeE4"
+        //assert
+        assertThrows<IllegalArgumentException> {
+            jwtValidatorService.validateToken(jwtToken)
+        }
+    }
+
+    @Test
+    fun givenAnExpiredToken_whenValidatingJwt_ThenRaiseAnError() {
+        //arrange
+        val secret = secretGenerator()
+        val username = "test"
+        //act
+        val jwtGeneratorService = JwtGeneratorService(secret, Duration.ofSeconds(-3600))
+        val jwtValidatorService = JwtValidatorService(secret)
+        val jwtToken: String = jwtGeneratorService.generateToken(username, emptyMap())
+        //assert
+        assertThrows<IllegalArgumentException> {
+            jwtValidatorService.validateToken(jwtToken)
+        }
+    }
+
+    @Test
+    fun givenATamperedToken_whenValidatingJwt_ThenRaiseAnError() {
         //arrange
         val secret = secretGenerator()
         val tamperedToken =
@@ -40,7 +69,7 @@ class JwtServicesTest {
     }
 
     @Test
-    fun givenATokenWithDifferentSecret_whenValidatingJwt_ThenValidation() {
+    fun givenATokenWithDifferentSecret_whenValidatingJwt_ThenRaiseAnError() {
         //act
         val jwtGeneratorService = JwtGeneratorService(secretGenerator(), Duration.ofSeconds(3600))
         val token = jwtGeneratorService.generateToken("test", emptyMap())
