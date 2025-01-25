@@ -36,3 +36,5 @@ databaseChangeLog:
      file: db/changelog/dml/insert-role-001.yaml
   - include:
      file: db/changelog/dml/update-role-system-user-001.yaml
+  - include:
+     file: db/changelog/dml/update-password-system-user-001.yaml
