@@ -7,16 +7,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 
-class EncryptionServiceTest {
+class PasswordEncoderServiceTest {
 
     private lateinit var passwordEncoder: PasswordEncoder
 
-    private lateinit var encryptionService: EncryptionService
+    private lateinit var encryptionService: PasswordEncoderService
 
     @BeforeEach
     fun setUp() {
         passwordEncoder = BCryptPasswordEncoder()
-        encryptionService = EncryptionService(passwordEncoder)
+        encryptionService = PasswordEncoderService(passwordEncoder)
     }
 
     @Test

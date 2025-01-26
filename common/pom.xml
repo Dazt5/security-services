@@ -23,6 +23,12 @@
     </properties>
 
     <dependencies>
+        <!-- modules-->
+        <dependency>
+            <groupId>com.alejandra</groupId>
+            <artifactId>core-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -40,6 +46,7 @@
             <version>${io.json.web.token.version}</version>
             <scope>runtime</scope>
         </dependency>
+
     </dependencies>
 
 </project>
