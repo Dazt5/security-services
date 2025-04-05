@@ -30,6 +30,7 @@ class JwtValidateFilter(
      * Time ago I was having issues with this filter bc was filtering some request that shouldn't, using this we got that.
      * */
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
+        //TODO: create a way to handle all no-secured endpoints
         return request.servletPath.startsWith("/auth/")
     }
 

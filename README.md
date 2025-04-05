@@ -8,6 +8,11 @@ Project is organized using modules and following **Hexagonal Architecture**:
 - adapters-outgoing: there are the data persistence classes and integration with third-party systems.
 - app: general project configuration and aspects related to the app infrastructure.
 
+Ports define contracts in the core, adapters-incoming or adapters-outgoing implements these contracts and the core never knows about JPA, BCrypt or Rest, only interfaces.
+
+So in adapters-outgoing we implement our controller which will inject a port(optionally it can inject a service that works like a wrapper for ports)
+then these ports will interact with other ports which contracts will be defined in the core but its implementations can be on the adapters packages.
+
 ## Database configuration(required)
 
 ### Database required env variables:
@@ -55,3 +60,12 @@ This secret will be used to sign and check Jwt tokens.
 > full path: ```/security-services/common/src/test/kotlin/com/alejandra/security/jwt/JwtServicesTest.kt```
 
 - TODO: It will be leverage, the idea is to encrypt the secret and decrypt it each time we need to verify a token.
+
+## Some TODOs needed to be completed
+
+should I create a trello board to trace all this stuff?, yes, but anyway.
+
+- Fix TODOs comments leaved in code
+- Integrate PMD Lib and use github action(or something) to check test, sonar(if possible) and PMDs
+- create some interesting git pre-commit hooks
+- remove this section when all Trello board is created.

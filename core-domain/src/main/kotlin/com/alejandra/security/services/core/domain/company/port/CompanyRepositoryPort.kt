@@ -1,8 +1,8 @@
-package com.alejandra.security.services.adapters.incoming.service.company
+package com.alejandra.security.services.core.domain.company.port
 
 import com.alejandra.security.services.core.domain.company.model.Company
 
-interface CompanyService {
+interface CompanyRepositoryPort {
 
     fun getCompanies(): List<Company>
 
