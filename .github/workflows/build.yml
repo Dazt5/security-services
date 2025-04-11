@@ -1,9 +1,12 @@
-name: Maven Build
+name: Build
 
 on:
   push:
     branches:
-      - '**'  # Ejecutar en push a cualquier rama
+      - '**'
+  pull_request:
+    types: [opened]
+    branches: ["**"]
 
 jobs:
   build:
