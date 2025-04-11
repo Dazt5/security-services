@@ -1,15 +1,17 @@
-name: pr-build
+name: branch-build
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches: ["main"]
   push:
     branches-ignore:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+    branches:
       - main
 
 jobs:
   build:
+    name: Branch Build
     runs-on: ubuntu-latest
 
     steps:
