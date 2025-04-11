@@ -1,0 +1,35 @@
+# Build directories
+target/
+build/
+
+# IDEs config files
+*.iml
+.idea/
+*.classpath
+*.project
+*.settings/
+
+# OS Temp files
+.DS_Store
+Thumbs.db
+
+*.log
+
+# Local wrappers or dependencies
+.mvn/
+.gradle/
+.pom/
+
+# Git folder and files
+.git
+.gitignore
+
+# Test files
+jacoco.exec
+coverage/
+*.ec
+
+# Common non-necessary files
+*.swp
+*.bak
+*.tmp

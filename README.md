@@ -61,6 +61,36 @@ This secret will be used to sign and check Jwt tokens.
 
 - TODO: It will be leverage, the idea is to encrypt the secret and decrypt it each time we need to verify a token.
 
+## Docker 
+
+### Build
+Use: `docker build -t security-services:latest .`
+
+### Deploying in a container
+Use: 
+```
+docker run --name security-services-container \
+  -e SECURITY_SERVICES_DB_NAME \
+  -e SECURITY_SERVICES_DB_USER \
+  -e SECURITY_SERVICES_DB_PASSWORD \
+  -e SECURITY_SERVICES_DBMS \
+  -e SECURITY_SERVICES_DB_HOST \
+  -e SECURITY_SERVICES_DB_PORT \
+  -e SECURITY_SERVICES_DB_DRIVER \
+  -e APP_CONTEXTS_ENABLES \
+  -e JWT_SECRET \
+  -p 8080:8080 \
+  security-services:latest
+```
+Would recommend you to copy .env_example file in root with the name .env and use:
+```
+docker run --name security-services-container --env-file .env -p 8080:8080 security-services:latest
+```
+If your database is in a different container you should create a network and add both containers into that network.
+```
+docker run --name security-services-container --env-file .env --network postgres_pg_security_services_network -p 8080:8080 security-services:latest
+```
+
 ## Some TODOs needed to be completed
 
 should I create a trello board to trace all this stuff?, yes, but anyway.
