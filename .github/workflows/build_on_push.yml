@@ -1,17 +1,14 @@
-name: pr-build
+name: build_on_push
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches: ["main"]
   push:
     branches-ignore:
       - main
 
 jobs:
   build:
+    name: Build on Push
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
