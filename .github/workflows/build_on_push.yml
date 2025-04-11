@@ -1,19 +1,14 @@
-name: branch-build
+name: build_on_push
 
 on:
   push:
     branches-ignore:
       - main
-  pull_request:
-    types: [opened, synchronize]
-    branches:
-      - main
 
 jobs:
   build:
-    name: Branch Build
+    name: Build on Push
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
