@@ -1,5 +1,6 @@
 package com.alejandra.security.services.adapters.outgoing.db.user.repository
 
+import com.alejandra.security.services.adapters.outgoing.db.exception.EntityNotFoundException
 import com.alejandra.security.services.adapters.outgoing.db.user.mapper.UserAccountMapper
 import com.alejandra.security.services.core.domain.user.model.UserAccount
 import com.alejandra.security.services.core.domain.user.port.UserAccountRepositoryPort
@@ -12,7 +13,7 @@ class UserAccountRepository(val jpaUserAccountRepository: JpaUserAccountReposito
 
     override fun findByUsername(username: String): UserAccount {
         val userAccountEntity =
-            jpaUserAccountRepository.findByEmail(username) ?: throw IllegalArgumentException("User not found")
+            jpaUserAccountRepository.findByEmail(username) ?: throw EntityNotFoundException("User not found")
         return UserAccountMapper.toDomain(userAccountEntity)
     }
 

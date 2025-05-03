@@ -10,4 +10,9 @@ class CompanyServiceImpl(private val companyRepositoryPort: CompanyRepositoryPor
     override fun getCompanies(): List<Company> {
         return companyRepositoryPort.getCompanies()
     }
+
+    override fun getCompanyById(companyId: String): Company {
+        return companyRepositoryPort.getCompanyById(companyId)
+    }
+
 }

@@ -6,4 +6,6 @@ interface CompanyRepositoryPort {
 
     fun getCompanies(): List<Company>
 
+    fun getCompanyById(companyId: String): Company
+
 }
