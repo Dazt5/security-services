@@ -1,5 +1,6 @@
 package com.alejandra.security.services.core.domain.user.service
 
+import com.alejandra.security.services.core.domain.exception.UnauthorizedException
 import com.alejandra.security.services.core.domain.common.PasswordEncoderPort
 import com.alejandra.security.services.core.domain.user.model.UserAccount
 import com.alejandra.security.services.core.domain.user.port.LoginPort
@@ -19,12 +20,10 @@ class LoginService(
         val userAccount: UserAccount = this.userAccountRepositoryPort.findByUsername(username)
         userAccount.password?.let {
             if (!passwordEncoderPort.matchPassword(password, it)) {
-                //TODO: Change exception class for a custom one.
-                throw IllegalArgumentException("Not valid credentials")
+                throw UnauthorizedException("User or password does not match, try again...")
             }
         } ?: run {
-            //TODO: Change exception class for a custom one.
-            throw IllegalArgumentException("Your User has problem, call support for more information.")
+            throw UnauthorizedException("Your User has problem, call support for more information.")
         }
         return this.tokenProviderPort.generateToken(username)
     }

@@ -3,8 +3,10 @@ package com.alejandra.security.auth
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.fail
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import kotlin.test.fail
 
 
 class PasswordEncoderServiceTest {

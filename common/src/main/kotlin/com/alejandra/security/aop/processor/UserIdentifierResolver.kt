@@ -1,6 +1,7 @@
 package com.alejandra.security.aop.processor
 
 import com.alejandra.security.aop.annotation.UserIdentifier
+import com.alejandra.security.services.core.domain.exception.UnauthorizedException
 import com.alejandra.security.jwt.JwtTokenProviderService
 import org.springframework.core.MethodParameter
 import org.springframework.stereotype.Component
@@ -24,12 +25,11 @@ class UserIdentifierResolver(
         webRequest: NativeWebRequest,
         binderFactory: WebDataBinderFactory?
     ): String {
-        //TODO: REPLACE IT FOR A CUSTOM EXCEPTION
         val authHeader = webRequest.getHeader("Authorization")
-            ?: throw IllegalArgumentException("No Authorization header found")
+            ?: throw UnauthorizedException("No Authorization header found")
 
         if (!authHeader.startsWith("Bearer ")) {
-            throw IllegalArgumentException("Invalid token type")
+            throw UnauthorizedException("Invalid token type")
         }
 
         val token = authHeader.substring(7)

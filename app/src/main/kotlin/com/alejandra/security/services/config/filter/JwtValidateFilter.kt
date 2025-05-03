@@ -2,6 +2,7 @@ package com.alejandra.security.services.config.filter
 
 import com.alejandra.security.auth.CustomUserDetailsService
 import com.alejandra.security.jwt.JwtTokenProviderService
+import com.alejandra.security.services.core.domain.exception.UnauthorizedException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -48,8 +49,7 @@ class JwtValidateFilter(
             val username: String = jwtTokenProviderService.validateToken(token)
             if (username.isBlank()) {
                 LOGGER.error("username in token not found, throwing exception")
-                //TODO: Change exception class for a custom one.
-                throw IllegalArgumentException("Bad authentication")
+                throw UnauthorizedException("Bad authentication")
             }
             LOGGER.info("building custom user details")
             val userDetails = customUserDetailsService.loadUserByUsername(username)
@@ -59,8 +59,7 @@ class JwtValidateFilter(
             SecurityContextHolder.getContext().authentication = authentication
         } ?: run {
             LOGGER.error("No authorization header found in request, sending exception")
-            //TODO: Change exception class for a custom one
-            throw IllegalArgumentException("No authentication provided.")
+            throw UnauthorizedException("No authentication provided.")
         }
         filterChain.doFilter(request, response)
     }
