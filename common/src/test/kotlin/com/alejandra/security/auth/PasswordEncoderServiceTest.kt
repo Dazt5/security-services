@@ -43,9 +43,4 @@ class PasswordEncoderServiceTest {
         Assertions.assertFalse(encryptionService.matchPassword(rawPassword, encryptedPassword))
     }
 
-    @Test
-    fun `test that should fail`() {
-        fail()
-    }
-
 }
