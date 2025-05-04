@@ -40,7 +40,7 @@ class JwtValidateFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        LOGGER.info("Validation authentication")
+        LOGGER.debug("Validation authentication")
         val authHeader: String? = request.getHeader(HttpHeaders.AUTHORIZATION)
             ?: request.getHeader(HttpHeaders.AUTHORIZATION.lowercase())
             ?: request.getHeader(HttpHeaders.AUTHORIZATION.uppercase())
@@ -51,15 +51,15 @@ class JwtValidateFilter(
                 LOGGER.error("username in token not found, throwing exception")
                 throw UnauthorizedException("Bad authentication")
             }
-            LOGGER.info("building custom user details")
+            LOGGER.debug("building custom user details for username: {}", username)
             val userDetails = customUserDetailsService.loadUserByUsername(username)
             val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
             authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
-            LOGGER.info("Setting authentication in context holder")
+            LOGGER.info("Setting authentication in context holder for username: {}", username)
             SecurityContextHolder.getContext().authentication = authentication
         } ?: run {
             LOGGER.error("No authorization header found in request, sending exception")
-            throw UnauthorizedException("No authentication provided.")
+            throw UnauthorizedException("Bad authentication.")
         }
         filterChain.doFilter(request, response)
     }
