@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-role-001
+      author: david.alvarez@admin.com
+      context: local-dev
+      preConditions:
+        - dbms:
+            type: postgresql
+      changes:
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: role_id
+                  value: 'bf81658d-85cb-4dd7-b9d1-0674d56198f5'
+              - column:
+                  name: role_code
+                  value: 'OWNER'
+                  constraints:
+                    unique: true
+              - column:
+                  name: role_name
+                  value: 'OWNER'
+              - column:
+                  name: role_description
+                  value: 'User company owner responsible to manage company system'
+              - column:
+                  name: created_on
+                  valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'
+              - column:
+                  name: created_by
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: role_id
+                  value: 'bf81658d-85cb-4dd7-b9d1-0674d56198f6'
+              - column:
+                  name: role_code
+                  value: 'EMPLOYEE'
+                  constraints:
+                    unique: true
+              - column:
+                  name: role_name
+                  value: 'EMPLOYEE'
+              - column:
+                  name: role_description
+                  value: 'User responsible to manage some specific safe boxes configured by OWNER role'
+              - column:
+                  name: created_on
+                  valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'
+              - column:
+                  name: created_by
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
+      rollback: empty

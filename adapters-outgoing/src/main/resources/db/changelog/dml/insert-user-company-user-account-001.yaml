@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-system-user-account-001
+      author: david.alvarez@admin.com
+      context: local-dev
+      preConditions:
+        - dbms:
+            type: postgresql
+      changes:
+        - insert:
+            tableName: user_account
+            columns:
+              - column:
+                  name: user_account_id
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759776'
+              - column:
+                  name: name
+                  value: 'Fake Company 1'
+              - column:
+                  name: last_name
+                  value: 'Test Account'
+              - column:
+                  name: email
+                  value: 'user1@companyfake1.com'
+              - column:
+                  name: created_on
+                  valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'
+              - column:
+                  name: created_by
+                  value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
+              - column:
+                  name: status
+                  value: '1'
+              - column:
+                  name: email_verified
+                  value: '1'
+              - column:
+                  name: mfa_enabled
+                  value: '0'
+        - insert:
+                  tableName: company_user_account
+                  columns:
+                    - column:
+                        name: company_user_account_id
+                        value: '695ebce8-621f-4e1f-b775-57aabf3123d6'
+                    - column:
+                        name: user_account_id
+                        value: '9a99241b-8700-44d0-a5fb-8e6d05759776'
+                    - column:
+                        name: company_id
+                        value: '695ebce8-621f-4e1f-b775-57aabf3123d5'
+                    - column:
+                        name: created_on
+                        valueComputed: 'EXTRACT(EPOCH FROM CURRENT_TIMESTAMP)::BIGINT'
+                    - column:
+                        name: created_by
+                        value: '9a99241b-8700-44d0-a5fb-8e6d05759775'
+        - update:
+            tableName: user_account
+            columns:
+              - column:
+                  name: password
+                  value: '$2a$10$ryFWIyQjAvvvTvfpGS03aO4bRJwWEYhlBWfSqEZpZC9gEM96rdwsa'
+            where: "user_account_id = '9a99241b-8700-44d0-a5fb-8e6d05759776'"
+        - update:
+            tableName: user_account
+            columns:
+              - column:
+                  name: role_id
+                  value: bf81658d-85cb-4dd7-b9d1-0674d56198f5
+            where: "user_account_id = '9a99241b-8700-44d0-a5fb-8e6d05759776'"
+      rollback: empty
+
+

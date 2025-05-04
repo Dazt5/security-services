@@ -35,6 +35,7 @@ databaseChangeLog:
                   type: varchar(60)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: password
                   type: varchar(60)

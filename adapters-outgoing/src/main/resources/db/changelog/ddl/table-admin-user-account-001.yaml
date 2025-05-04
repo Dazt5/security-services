@@ -18,7 +18,7 @@ databaseChangeLog:
                   type: varchar(36)
                   constraints:
                     nullable: false
-                    foreignKeyName: company_user_account_user_account
+                    foreignKeyName: admin_user_account_user_account
                     references: user_account(user_account_id)
                     unique: true
               - column:
