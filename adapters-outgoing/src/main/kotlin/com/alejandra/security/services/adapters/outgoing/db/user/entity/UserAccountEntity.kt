@@ -32,6 +32,10 @@ class UserAccountEntity(
     var lastLogin: Long?,
     @Column(nullable = false)
     var status: Boolean,
+    @OneToOne(mappedBy = "userAccount", fetch = FetchType.LAZY)
+    var adminUser: AdminUserAccountEntity? = null,
+    @OneToOne(mappedBy = "userAccount", fetch = FetchType.LAZY)
+    var companyUser: CompanyUserAccountEntity?,
     updatedOn: Long?,
     updatedBy: String?,
     createdOn: Long,
