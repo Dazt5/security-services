@@ -1,5 +1,6 @@
 package com.alejandra.security.jwt
 
+import com.alejandra.security.services.core.domain.exception.UnauthorizedException
 import com.alejandra.security.services.core.domain.user.port.TokenProviderPort
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
@@ -24,7 +25,6 @@ class JwtTokenProviderService(
     override fun generateToken(username: String): String {
         val secretKey = Keys.hmacShaKeyFor(jwtSecret.encodeToByteArray())
         return Jwts.builder()
-//            .claims() TODO: check claims when refactoring this to receive userAccount business object.
             .subject(username)
             .issuedAt(Date())
             .expiration(Date(System.currentTimeMillis() + jwtExpirationTime.toMillis()))
@@ -41,13 +41,11 @@ class JwtTokenProviderService(
                 .parseSignedClaims(token)
             return requireNotNull(claims.payload.subject) {
                 LOGGER.error("JWT malformed, not username available in claims token: {}", token)
-                //TODO: Change exception class for a custom one.
-                throw IllegalArgumentException("Not a valid request")
+                throw UnauthorizedException("Not a valid request")
             }
         } catch (e: JwtException) {
-            //TODO: Change exception class for a custom one.
             LOGGER.error("JWT malformed, message: {}", e.message, e)
-            throw IllegalArgumentException("Invalid authorization", e)
+            throw UnauthorizedException("Not a valid request", e)
         }
     }
 

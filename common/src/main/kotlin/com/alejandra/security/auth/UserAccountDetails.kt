@@ -10,7 +10,8 @@ class UserAccountDetails(
     private val password: String?,
     private val authorities: List<Role>,
     private val mfaEnabled: Boolean,
-    private val isEnabled: Boolean
+    private val isEnabled: Boolean,
+    private val isAdmin: Boolean
 ) : UserDetails {
 
     override fun getAuthorities(): Collection<SimpleGrantedAuthority> {
@@ -31,6 +32,10 @@ class UserAccountDetails(
 
     fun isMfaEnabled(): Boolean {
         return this.mfaEnabled
+    }
+
+    fun isAdmin(): Boolean {
+        return this.isAdmin
     }
 
 }
