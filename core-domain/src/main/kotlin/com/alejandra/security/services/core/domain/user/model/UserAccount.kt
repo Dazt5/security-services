@@ -12,6 +12,7 @@ class UserAccount(
     var mfaEnabled: Boolean,
     var lastLogin: Long?,
     var status: Boolean,
+    var isAdmin: Boolean,
     updatedOn: Long?,
     updatedBy: String?,
     createdOn: Long,
