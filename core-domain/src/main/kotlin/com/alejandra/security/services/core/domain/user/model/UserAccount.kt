@@ -1,5 +1,6 @@
 package com.alejandra.security.services.core.domain.user.model
 
+import com.alejandra.security.services.core.domain.company.model.Company
 import com.alejandra.security.services.core.domain.model.BaseTO
 
 class UserAccount(
@@ -13,6 +14,7 @@ class UserAccount(
     var lastLogin: Long?,
     var status: Boolean,
     var isAdmin: Boolean,
+    var company: Company?,
     updatedOn: Long?,
     updatedBy: String?,
     createdOn: Long,

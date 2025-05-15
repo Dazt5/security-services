@@ -1,9 +1,10 @@
 package com.alejandra.security.services.adapters.outgoing.db.user.mapper
 
+import com.alejandra.security.services.adapters.outgoing.db.company.entity.CompanyEntity
+import com.alejandra.security.services.adapters.outgoing.db.company.mapper.CompanyMapper
 import com.alejandra.security.services.adapters.outgoing.db.user.entity.UserAccountEntity
 import com.alejandra.security.services.core.domain.exception.UnauthorizedException
 import com.alejandra.security.services.core.domain.user.model.UserAccount
-import java.util.Objects
 
 object UserAccountMapper {
 
@@ -30,7 +31,10 @@ object UserAccountMapper {
     fun toDomain(userAccountEntity: UserAccountEntity): UserAccount {
         val isAdmin = userAccountEntity.adminUser?.let { true } ?: userAccountEntity.companyUser?.let { false }
         ?: throw UnauthorizedException("Your user has no access to our system, please check it calling support")
-
+        var company: CompanyEntity? = null
+        if (!isAdmin){
+            company = userAccountEntity.companyUser!!.company
+        }
         return UserAccount(
             userAccountEntity.userAccountId,
             RoleMapper.toDomain(userAccountEntity.role),
@@ -42,6 +46,7 @@ object UserAccountMapper {
             userAccountEntity.lastLogin,
             userAccountEntity.status,
             isAdmin,
+            if (company != null) CompanyMapper.toDomain(company) else null,
             userAccountEntity.updatedOn,
             userAccountEntity.updatedBy,
             userAccountEntity.createdOn,
