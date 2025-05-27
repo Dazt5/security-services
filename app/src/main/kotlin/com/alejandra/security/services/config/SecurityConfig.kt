@@ -38,6 +38,7 @@ class SecurityConfig(
             .authorizeHttpRequests { authorize ->
                 authorize
                     .requestMatchers("/auth/**").permitAll()
+                    .requestMatchers("/actuator/**").permitAll()
                     .requestMatchers("/company/**").access(AdminAuthenticationManager())
                     .anyRequest().authenticated()
             }

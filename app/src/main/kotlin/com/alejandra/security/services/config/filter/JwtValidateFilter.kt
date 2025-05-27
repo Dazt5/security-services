@@ -32,7 +32,7 @@ class JwtValidateFilter(
      * */
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         //TODO: create a way to handle all no-secured endpoints
-        return request.servletPath.startsWith("/auth/")
+        return request.servletPath.startsWith("/auth/") || request.servletPath.startsWith("/actuator/")
     }
 
     override fun doFilterInternal(
